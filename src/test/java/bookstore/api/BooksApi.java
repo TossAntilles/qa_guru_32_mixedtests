@@ -4,6 +4,8 @@ import bookstore.models.*;
 
 import java.util.Collections;
 
+import static bookstore.data.Path.BOOKSTORE;
+import static bookstore.data.Path.BOOKSTORES;
 import static bookstore.specs.ApiSpecs.*;
 import static io.restassured.RestAssured.given;
 
@@ -15,7 +17,7 @@ public class BooksApi {
                 .header("Authorization", "Bearer " + loginResponse.getToken())
                 .queryParam("UserId", loginResponse.getUserId())
             .when()
-                .get("https://demoqa.com/BookStore/v1/Books")
+                .get(BOOKSTORES)
             .then()
                 .spec(response200)
                 .extract().as(BookCollections.class);
@@ -40,7 +42,7 @@ public class BooksApi {
             .header("Authorization", "Bearer " + lr.getToken())
             .body(books)
         .when()
-            .post("https://demoqa.com/BookStore/v1/Books")
+            .post(BOOKSTORES)
         .then()
             .spec(response201);
     }
@@ -51,7 +53,8 @@ public class BooksApi {
             .header("Authorization", "Bearer " + lr.getToken())
             .body(book)
         .when()
-            .delete("https://demoqa.com/BookStore/v1/Book")
+
+            .delete(BOOKSTORE)
         .then()
             .spec(response204);
 
@@ -63,7 +66,7 @@ public class BooksApi {
             .header("Authorization", "Bearer " + lr.getToken())
             .queryParam("UserId", lr.getUserId())
         .when()
-            .delete("https://demoqa.com/BookStore/v1/Books")
+            .delete(BOOKSTORES)
         .then()
             //status varies depending on book list
             .log().all();
