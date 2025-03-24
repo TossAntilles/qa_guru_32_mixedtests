@@ -2,7 +2,9 @@ package bookstore.tests;
 
 import bookstore.api.LoginApi;
 import bookstore.components.LoginAddCookies;
+import bookstore.helpers.Attach;
 import bookstore.models.LoginResponseModel;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +16,14 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
 public class LoginTest extends TestBase {
+
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
+    }
 
     @Test
     @DisplayName("Логин, API и куки")

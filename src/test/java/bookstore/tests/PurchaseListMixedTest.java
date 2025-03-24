@@ -22,7 +22,7 @@ import static io.qameta.allure.Allure.step;
 
 public class PurchaseListMixedTest extends TestBase{
 
-        @AfterEach
+    @AfterEach
     void addAttachments() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
