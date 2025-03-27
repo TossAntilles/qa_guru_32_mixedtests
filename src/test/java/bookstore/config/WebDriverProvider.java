@@ -6,12 +6,11 @@ import io.restassured.RestAssured;
 public class WebDriverProvider {
 
     private final WebDriverConfig wdConfig;
-
     public WebDriverProvider(WebDriverConfig wdConfig) {
         this.wdConfig = wdConfig;
     }
 
-    public void setConfig() {
+    public void setConfig(){
         Configuration.baseUrl = wdConfig.baseURL();
         RestAssured.baseURI = wdConfig.baseURI();
         Configuration.browserSize = wdConfig.browserResolution();

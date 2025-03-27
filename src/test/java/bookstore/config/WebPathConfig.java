@@ -20,18 +20,18 @@ public interface WebPathConfig extends Config {
 
     @Key("BOOKSTORES")
     @DefaultValue("/BookStore/v1/Books")
-    String BOOKSTORES();
-
-    ;
+    String BOOKSTORES();;
 
     @Key("ACCOUNT")
     @DefaultValue("/Account/v1/User/")
     String ACCOUNT();
+
 
     //WEB
 
     @Key("PROFILE")
     @DefaultValue("/profile")
     String PROFILE();
+
 
 }
