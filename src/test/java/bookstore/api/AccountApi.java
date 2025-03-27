@@ -5,8 +5,7 @@ import bookstore.models.BookCollections;
 import bookstore.models.LoginResponseModel;
 import org.aeonbits.owner.ConfigFactory;
 
-import static bookstore.specs.ApiSpecs.jsonRequest;
-import static bookstore.specs.ApiSpecs.response200;
+import static bookstore.specs.ApiSpecs.*;
 import static io.restassured.RestAssured.given;
 
 public class AccountApi {
@@ -20,7 +19,7 @@ public class AccountApi {
                 .when()
                 .get(PATH.ACCOUNT()+loginResponse.getUserId())
                 .then()
-                .spec(response200)
+                .spec(responseCode(200))
                 .extract().as(BookCollections.class);
 
 

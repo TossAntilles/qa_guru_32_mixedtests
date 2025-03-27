@@ -18,9 +18,7 @@ public class LoginApi {
     @Step("Логин через API")
     public LoginResponseModel login() {
 
-        LoginBodyModel loginBodyModel = new LoginBodyModel();
-        loginBodyModel.setUserName(USER.USERNAME());
-        loginBodyModel.setPassword(USER.PASSWORD());
+        LoginBodyModel loginBodyModel = new LoginBodyModel(USER.USERNAME(), USER.PASSWORD());
 
         return given()
                 .spec(jsonRequest)
@@ -29,7 +27,7 @@ public class LoginApi {
             .when()
                 .post(PATH.LOGIN())
             .then()
-                .spec(response200)
+                .spec(responseCode(200))
                 .extract().as(LoginResponseModel.class);
     }
 

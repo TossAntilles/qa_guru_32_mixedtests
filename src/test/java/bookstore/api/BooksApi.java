@@ -22,7 +22,7 @@ public class BooksApi {
             .when()
                 .get(PATH.BOOKSTORES())
             .then()
-                .spec(response200)
+                .spec(responseCode(200))
                 .extract().as(BookCollections.class);
 
         AddBooksModel addBookBodyModel = new AddBooksModel();
@@ -47,7 +47,7 @@ public class BooksApi {
         .when()
             .post(PATH.BOOKSTORES())
         .then()
-            .spec(response201);
+                .spec(responseCode(201));
     }
     public void deleteBook(LoginResponseModel lr, DeleteBookModel book) {
 
@@ -59,7 +59,7 @@ public class BooksApi {
 
             .delete(PATH.BOOKSTORE())
         .then()
-            .spec(response204);
+                .spec(responseCode(204));
 
     }
 
