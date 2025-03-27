@@ -3,7 +3,7 @@ package bookstore.config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:${env}.properties",
+        "classpath:${ENVIRONMENT}.properties",
 })
 
 public interface WebDriverConfig extends Config {

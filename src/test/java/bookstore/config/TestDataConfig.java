@@ -15,4 +15,5 @@ public interface TestDataConfig extends Config {
     @Config.Key("PASSWORD")
     @Config.DefaultValue("!Toss1138")
     String PASSWORD();
+
 }
