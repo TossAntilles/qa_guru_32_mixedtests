@@ -1,8 +1,6 @@
 package bookstore.tests;
 
-import bookstore.config.VideoRecordingProvider;
-import bookstore.config.WebDriverConfig;
-import bookstore.config.WebDriverProvider;
+import bookstore.config.*;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Step;
@@ -12,7 +10,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
-
 public class TestBase {
 
     @BeforeAll
@@ -20,7 +17,6 @@ public class TestBase {
     static void beforeAll(){
 
         System.getProperty("ENVIRONMENT", "qaguru");
-        //System.setProperty("ENVIRONMENT", "qaguru");
 
         final WebDriverConfig wdConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
         final VideoRecordingProvider vidConfig = new VideoRecordingProvider();
@@ -29,6 +25,9 @@ public class TestBase {
         wdProvider.setConfig();
         vidConfig.setCapabilities();
 
+        System.out.println(System.getProperty("ENVIRONMENT", "qaguru"));
+        System.out.println(wdConfig.webDriverHost());
+        System.out.println("!");
     }
 
     @BeforeEach
