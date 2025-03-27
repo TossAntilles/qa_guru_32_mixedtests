@@ -25,7 +25,6 @@ public class TestBase {
         WebDriverProvider wdProvider = new WebDriverProvider(wdConfig);
         wdProvider.setConfig();
         vidConfig.setCapabilities();
-
     }
 
     @BeforeEach

@@ -10,7 +10,5 @@ import java.util.List;
 public class AddBooksModel {
     String userId;
     List<IsbnBookModel> collectionOfIsbns;
-
-
 }
 

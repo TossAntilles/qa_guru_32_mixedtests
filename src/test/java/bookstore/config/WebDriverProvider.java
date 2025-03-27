@@ -18,13 +18,10 @@ public class WebDriverProvider {
 
         if (wdConfig.remoteRun()) {
             Configuration.remote = wdConfig.webDriverHost();
-
         }
 
         Configuration.pageLoadStrategy = wdConfig.pageLoadStrategy();
         Configuration.timeout = wdConfig.webDriverTimeout();
-
-
     }
 }
 

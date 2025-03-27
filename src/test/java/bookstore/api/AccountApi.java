@@ -23,7 +23,6 @@ public class AccountApi {
                 .spec(response200)
                 .extract().as(BookCollections.class);
 
-
         return response;
     }
 }
