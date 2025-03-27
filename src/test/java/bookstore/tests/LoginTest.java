@@ -27,7 +27,7 @@ public class LoginTest extends TestBase {
 
     @Test
     @DisplayName("Логин, API и куки")
-    public void loginTest(){
+    public void loginTest() {
 
         LoginResponseModel loginResponse = new LoginApi().login();
 

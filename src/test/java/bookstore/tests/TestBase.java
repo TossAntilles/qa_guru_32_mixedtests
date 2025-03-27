@@ -15,7 +15,7 @@ public class TestBase {
 
     @BeforeAll
     @Step("Подготовка тестового окружения")
-    static void beforeAll(){
+    static void beforeAll() {
 
         Configuration.baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
         RestAssured.baseURI = "https://demoqa.com";

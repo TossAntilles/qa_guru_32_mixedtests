@@ -8,4 +8,5 @@ public class Path {
     public static final String ACCOUNT = "/Account/v1/User/";
 
     public static final String PROFILE = "/profile";
+
 }

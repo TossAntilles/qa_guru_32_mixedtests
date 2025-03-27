@@ -1,6 +1,5 @@
 package bookstore.api;
 
-import bookstore.data.TestData;
 import bookstore.models.LoginBodyModel;
 import bookstore.models.LoginResponseModel;
 import io.qameta.allure.Step;
@@ -15,18 +14,15 @@ public class LoginApi {
     @Step("Логин через API")
     public LoginResponseModel login() {
 
-        LoginBodyModel loginBodyModel = new LoginBodyModel();
-        loginBodyModel.setUserName(USERNAME);
-        loginBodyModel.setPassword(PASSWORD);
+        LoginBodyModel loginBodyModel = new LoginBodyModel(USERNAME,PASSWORD);
 
         return given()
                 .spec(jsonRequest)
                 .body(loginBodyModel)
-
-            .when()
+                .when()
                 .post(LOGIN)
-            .then()
-                .spec(response200)
+                .then()
+                .spec(responseCode(200))
                 .extract().as(LoginResponseModel.class);
     }
 

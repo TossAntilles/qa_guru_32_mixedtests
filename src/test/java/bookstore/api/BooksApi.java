@@ -16,10 +16,10 @@ public class BooksApi {
                 .spec(jsonRequest)
                 .header("Authorization", "Bearer " + loginResponse.getToken())
                 .queryParam("UserId", loginResponse.getUserId())
-            .when()
+                .when()
                 .get(BOOKSTORES)
-            .then()
-                .spec(response200)
+                .then()
+                .spec(responseCode(200))
                 .extract().as(BookCollections.class);
 
         AddBooksModel addBookBodyModel = new AddBooksModel();
@@ -38,37 +38,35 @@ public class BooksApi {
     public void addBook(LoginResponseModel lr, AddBooksModel books) {
 
         given()
-            .spec(jsonRequest)
-            .header("Authorization", "Bearer " + lr.getToken())
-            .body(books)
-        .when()
-            .post(BOOKSTORES)
-        .then()
-            .spec(response201);
+                .spec(jsonRequest)
+                .header("Authorization", "Bearer " + lr.getToken())
+                .body(books)
+                .when()
+                .post(BOOKSTORES)
+                .then()
+                .spec(responseCode(201));
     }
+
     public void deleteBook(LoginResponseModel lr, DeleteBookModel book) {
 
         given()
-            .spec(jsonRequest)
-            .header("Authorization", "Bearer " + lr.getToken())
-            .body(book)
-        .when()
-
-            .delete(BOOKSTORE)
-        .then()
-            .spec(response204);
-
+                .spec(jsonRequest)
+                .header("Authorization", "Bearer " + lr.getToken())
+                .body(book)
+                .when()
+                .delete(BOOKSTORE)
+                .then()
+                .spec(responseCode(204));
     }
 
     public void deleteAllBooks(LoginResponseModel lr) {
         given()
-            .spec(jsonRequest)
-            .header("Authorization", "Bearer " + lr.getToken())
-            .queryParam("UserId", lr.getUserId())
-        .when()
-            .delete(BOOKSTORES)
-        .then()
-            //status varies depending on book list
-            .log().all();
+                .spec(jsonRequest)
+                .header("Authorization", "Bearer " + lr.getToken())
+                .queryParam("UserId", lr.getUserId())
+                .when()
+                .delete(BOOKSTORES)
+                .then();
     }
+
 }

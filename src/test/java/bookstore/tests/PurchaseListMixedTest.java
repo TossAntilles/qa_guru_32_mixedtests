@@ -20,7 +20,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
 
-public class PurchaseListMixedTest extends TestBase{
+public class PurchaseListMixedTest extends TestBase {
 
     @AfterEach
     void addAttachments() {
@@ -32,7 +32,7 @@ public class PurchaseListMixedTest extends TestBase{
 
     @Test
     @DisplayName("Удаление книги, API + Web")
-    public void removeBookFromProfileTable(){
+    public void removeBookFromProfileTableTest() {
 
         LoginResponseModel lR = new LoginApi().login();
 
@@ -54,7 +54,6 @@ public class PurchaseListMixedTest extends TestBase{
         step("Precondition: добавляем книгу в список покупок ", () -> {
             booksApi.addBook(lR, addBooksModel);
             String bookTitle = Arrays.stream(accApi.getAccountBookList(lR).getBooks()).toList().get(0).getTitle();
-            //open(PROFILE);
             open("/profile");
             $(".ReactTable .rt-table").shouldHave(text(bookTitle));
         });

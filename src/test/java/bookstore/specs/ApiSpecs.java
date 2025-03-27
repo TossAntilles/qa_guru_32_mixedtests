@@ -11,25 +11,16 @@ import static io.restassured.http.ContentType.JSON;
 
 public class ApiSpecs {
 
-
     public static RequestSpecification jsonRequest = with()
             .filter(withCustomTemplates())
             .log().all()
             .contentType(JSON);
 
-    public static ResponseSpecification response200 = new ResponseSpecBuilder()
-            .expectStatusCode(200)
-            .log(ALL)
-            .build();
-
-    public static ResponseSpecification response201 = new ResponseSpecBuilder()
-            .expectStatusCode(201)
-            .log(ALL)
-            .build();
-
-    public static ResponseSpecification response204 = new ResponseSpecBuilder()
-            .expectStatusCode(204)
-            .log(ALL)
-            .build();
+    public static ResponseSpecification responseCode(int statusCode) {
+            ResponseSpecBuilder builder = new ResponseSpecBuilder();
+            builder.expectStatusCode(statusCode);
+            builder.log(ALL);
+        return builder.build();
+    }
 
 }

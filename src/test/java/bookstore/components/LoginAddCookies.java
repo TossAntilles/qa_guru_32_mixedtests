@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class LoginAddCookies {
-    
+
     public LoginResponseModel addCookies(LoginResponseModel lr) {
 
         open("https://demoqa.com/images/Toolsqa.jpg");
@@ -17,5 +17,5 @@ public class LoginAddCookies {
 
         return lr;
     }
-    
+
 }

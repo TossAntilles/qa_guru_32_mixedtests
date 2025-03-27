@@ -11,11 +11,11 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 
 
-public class PurchaseListApiTest extends TestBase{
+public class PurchaseListApiTest extends TestBase {
 
     @Test
     @DisplayName("Удаление книги, только API")
-    public void removeBookFromBasketTest(){
+    public void removeBookFromBasketTest() {
 
         LoginResponseModel lR = new LoginApi().login();
 
