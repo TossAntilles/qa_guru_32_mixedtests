@@ -26,9 +26,6 @@ public class TestBase {
         wdProvider.setConfig();
         vidConfig.setCapabilities();
 
-        System.out.println(System.getProperty("ENVIRONMENT", "qaguru"));
-        System.out.println(wdConfig.webDriverHost());
-        System.out.println("!");
     }
 
     @BeforeEach
