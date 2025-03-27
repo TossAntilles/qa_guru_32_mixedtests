@@ -23,7 +23,6 @@ public class LoginApi {
         return given()
                 .spec(jsonRequest)
                 .body(loginBodyModel)
-
             .when()
                 .post(PATH.LOGIN())
             .then()

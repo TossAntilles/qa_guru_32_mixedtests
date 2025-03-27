@@ -22,7 +22,6 @@ public class AccountApi {
                 .spec(responseCode(200))
                 .extract().as(BookCollections.class);
 
-
         return response;
     }
 }
