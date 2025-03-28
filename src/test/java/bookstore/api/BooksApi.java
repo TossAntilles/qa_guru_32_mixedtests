@@ -13,7 +13,6 @@ public class BooksApi {
 
     private static final WebPathConfig PATH = ConfigFactory.create(WebPathConfig.class, System.getProperties());
 
-
     public AddBooksModel getBookData(LoginResponseModel loginResponse) {
         BookCollections response = given()
                 .spec(jsonRequest)
@@ -57,7 +56,6 @@ public class BooksApi {
                 .header("Authorization", "Bearer " + lr.getToken())
                 .body(book)
                 .when()
-
                 .delete(PATH.BOOKSTORE())
                 .then()
                 .spec(responseCode(204));
@@ -70,8 +68,6 @@ public class BooksApi {
                 .queryParam("UserId", lr.getUserId())
                 .when()
                 .delete(PATH.BOOKSTORES())
-                .then()
-                //status varies depending on book list
-                .log().all();
+                .then();
     }
 }
