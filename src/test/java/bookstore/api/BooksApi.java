@@ -1,15 +1,18 @@
 package bookstore.api;
 
+import bookstore.config.WebPathConfig;
 import bookstore.models.*;
+import org.aeonbits.owner.ConfigFactory;
 
 import java.util.Collections;
 
-import static bookstore.data.Path.BOOKSTORE;
-import static bookstore.data.Path.BOOKSTORES;
 import static bookstore.specs.ApiSpecs.*;
 import static io.restassured.RestAssured.given;
 
 public class BooksApi {
+
+    private static final WebPathConfig PATH = ConfigFactory.create(WebPathConfig.class, System.getProperties());
+
 
     public AddBooksModel getBookData(LoginResponseModel loginResponse) {
         BookCollections response = given()
@@ -17,7 +20,7 @@ public class BooksApi {
                 .header("Authorization", "Bearer " + loginResponse.getToken())
                 .queryParam("UserId", loginResponse.getUserId())
                 .when()
-                .get(BOOKSTORES)
+                .get(PATH.BOOKSTORES())
                 .then()
                 .spec(responseCode(200))
                 .extract().as(BookCollections.class);
@@ -42,7 +45,7 @@ public class BooksApi {
                 .header("Authorization", "Bearer " + lr.getToken())
                 .body(books)
                 .when()
-                .post(BOOKSTORES)
+                .post(PATH.BOOKSTORES())
                 .then()
                 .spec(responseCode(201));
     }
@@ -54,7 +57,8 @@ public class BooksApi {
                 .header("Authorization", "Bearer " + lr.getToken())
                 .body(book)
                 .when()
-                .delete(BOOKSTORE)
+
+                .delete(PATH.BOOKSTORE())
                 .then()
                 .spec(responseCode(204));
     }
@@ -65,8 +69,9 @@ public class BooksApi {
                 .header("Authorization", "Bearer " + lr.getToken())
                 .queryParam("UserId", lr.getUserId())
                 .when()
-                .delete(BOOKSTORES)
-                .then();
+                .delete(PATH.BOOKSTORES())
+                .then()
+                //status varies depending on book list
+                .log().all();
     }
-
 }
