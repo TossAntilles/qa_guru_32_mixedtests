@@ -6,6 +6,7 @@ import bookstore.models.LoginResponseModel;
 import org.aeonbits.owner.ConfigFactory;
 
 import static bookstore.specs.ApiSpecs.*;
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 
 public class AccountApi {
@@ -13,6 +14,7 @@ public class AccountApi {
     private static final WebPathConfig PATH = ConfigFactory.create(WebPathConfig.class, System.getProperties());
 
     public BookCollections getAccountBookList(LoginResponseModel loginResponse) {
+        step("Получаем список покупок пользователя");
         return given()
                 .spec(jsonRequest)
                 .header("Authorization", "Bearer " + loginResponse.getToken())

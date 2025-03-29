@@ -8,6 +8,7 @@ import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 
 import static bookstore.specs.ApiSpecs.*;
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 
 public class LoginApi {
@@ -17,9 +18,10 @@ public class LoginApi {
 
     @Step("Логин через API")
     public LoginResponseModel login() {
-
+        step("Добавляем логин и пароль из testdata.properties");
         LoginBodyModel loginBodyModel = new LoginBodyModel(USER.USERNAME(), USER.PASSWORD());
 
+        step("Запрос на авторизацию");
         return given()
                 .spec(jsonRequest)
                 .body(loginBodyModel)

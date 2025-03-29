@@ -7,9 +7,7 @@ import bookstore.config.WebPathConfig;
 import bookstore.helpers.Attach;
 import bookstore.models.LoginResponseModel;
 import org.aeonbits.owner.ConfigFactory;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -32,6 +30,7 @@ public class LoginTest extends TestBase {
 
     @Test
     @DisplayName("Логин, API и куки")
+    @Tags({@Tag("web"), @Tag("critical")})
     public void loginTest() {
 
         LoginResponseModel loginResponse = new LoginApi().login();

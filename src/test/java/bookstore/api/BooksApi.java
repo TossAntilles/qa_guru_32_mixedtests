@@ -7,6 +7,7 @@ import org.aeonbits.owner.ConfigFactory;
 import java.util.Collections;
 
 import static bookstore.specs.ApiSpecs.*;
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 
 public class BooksApi {
@@ -14,6 +15,8 @@ public class BooksApi {
     private static final WebPathConfig PATH = ConfigFactory.create(WebPathConfig.class, System.getProperties());
 
     public AddBooksModel getBookData(LoginResponseModel loginResponse) {
+
+        step("Запрос на полный список книг");
         BookCollections response = given()
                 .spec(jsonRequest)
                 .header("Authorization", "Bearer " + loginResponse.getToken())
@@ -24,6 +27,7 @@ public class BooksApi {
                 .spec(responseCode(200))
                 .extract().as(BookCollections.class);
 
+        step("Получаем первую книгу из запроса");
         AddBooksModel addBookBodyModel = new AddBooksModel();
         addBookBodyModel.setUserId(loginResponse.getUserId());
         IsbnBookModel isbnBookModel = new IsbnBookModel();
@@ -39,6 +43,7 @@ public class BooksApi {
 
     public void addBook(LoginResponseModel lr, AddBooksModel books) {
 
+        step("Precondition: Добавляем книгу в список покупок");
         given()
                 .spec(jsonRequest)
                 .header("Authorization", "Bearer " + lr.getToken())
@@ -51,6 +56,7 @@ public class BooksApi {
 
     public void deleteBook(LoginResponseModel lr, DeleteBookModel book) {
 
+        step("Precondition: Удаляем книгу из списка покупок");
         given()
                 .spec(jsonRequest)
                 .header("Authorization", "Bearer " + lr.getToken())
@@ -62,6 +68,7 @@ public class BooksApi {
     }
 
     public void deleteAllBooks(LoginResponseModel lr) {
+        step("Precondition: Чистка списка покупок");
         given()
                 .spec(jsonRequest)
                 .header("Authorization", "Bearer " + lr.getToken())
