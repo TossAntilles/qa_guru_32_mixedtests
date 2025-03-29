@@ -16,8 +16,8 @@ public class TestBase {
     @Step("Подготовка тестового окружения")
     static void beforeAll(){
 
-        System.getProperty("ENVIRONMENT", "qaguru");
-        //System.setProperty("ENVIRONMENT", "qaguru");
+        //System.getProperty("ENVIRONMENT", "qaguru");
+        System.setProperty("ENVIRONMENT", "qaguru");
 
         final WebDriverConfig wdConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
         final VideoRecordingProvider vidConfig = new VideoRecordingProvider();
