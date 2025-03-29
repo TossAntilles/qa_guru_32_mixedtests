@@ -1,7 +1,6 @@
 package bookstore.helpers;
 
 import bookstore.config.WebDriverConfig;
-import bookstore.config.WebPathConfig;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
 import org.aeonbits.owner.ConfigFactory;
@@ -49,7 +48,7 @@ public class Attach {
     }
 
     public static URL getVideoUrl() {
-        String videoUrl = video.videoHost() + "/video/" + sessionId() + ".mp4";
+        String videoUrl = video.videoHost() + sessionId() + ".mp4";
         try {
             return new URL(videoUrl);
         } catch (MalformedURLException e) {
