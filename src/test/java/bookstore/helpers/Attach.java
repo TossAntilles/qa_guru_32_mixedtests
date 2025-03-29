@@ -1,7 +1,10 @@
 package bookstore.helpers;
 
+import bookstore.config.WebDriverConfig;
+import bookstore.config.WebPathConfig;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -36,6 +39,8 @@ public class Attach {
         );
     }
 
+    private static final WebDriverConfig video = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
+
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
     public static String addVideo() {
         return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
@@ -44,7 +49,7 @@ public class Attach {
     }
 
     public static URL getVideoUrl() {
-        String videoUrl = System.getProperty("webDriverHost", "http://217.114.8.221") + "/video/" + sessionId() + ".mp4";
+        String videoUrl = video.videoHost() + "/video/" + sessionId() + ".mp4";
         try {
             return new URL(videoUrl);
         } catch (MalformedURLException e) {

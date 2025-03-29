@@ -32,6 +32,10 @@ public interface WebDriverConfig extends Config {
     @DefaultValue("http://localhost:4444")
     String webDriverHost();
 
+    @Key("videoHost")
+    @DefaultValue("http://localhost")
+    String videoHost();
+
     @Key("pageLoadStrategy")
     @DefaultValue("eager")
     String pageLoadStrategy();
